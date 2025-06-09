@@ -1,15 +1,30 @@
 from pathlib import Path
 import os
 import dj_database_url
+import logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-reemplazar-esto')
 
-DEBUG = False
+DEBUG = True
 
 
-ALLOWED_HOSTS = ["*", "comercializadora-f2cm.onrender.com"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Agrega el hostname de Render si existe
@@ -70,10 +85,7 @@ WSGI_APPLICATION = 'comercial.wsgi.application'
 
 # Base de datos
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',
-        conn_max_age=600
-    )
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 # Validación de contraseñas
