@@ -33,6 +33,18 @@ DEBUG = 'RENDER' not in os.environ
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
 ]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 CORS_URLS_REGEX = r"^/api/.*$"
 
